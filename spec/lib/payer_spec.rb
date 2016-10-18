@@ -23,6 +23,11 @@ describe 'Eligible::Payer' do
       allow(Eligible).to receive(:request).with(:get, '/payers.json', api_key, params).and_return([response, api_key])
       expect(Eligible::Payer.list(params, api_key)).to eq 'success'
     end
+
+    it 'defaults to an empty hash if no params are provided' do
+      allow(Eligible).to receive(:request).with(:get, '/payers.json', nil, {}).and_return([response, api_key])
+      expect(Eligible::Payer.list).to eq 'success'
+    end
   end
 
   describe '.search_options' do

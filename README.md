@@ -561,8 +561,7 @@ response.to_hash
 ### List all the payers
 
 ```ruby
-response = Eligible::Payer.list({})
-response.collect { |payer| payer.to_hash }
+payers = Eligible::Payer.list.collect { |payer| payer.to_hash }
 ```
 
 ### View a single payer
@@ -579,7 +578,7 @@ response.to_hash
 params = { payer_id: '12345' }
 response = Eligible::Payer.search_options(params)
 response.to_hash
-``` 
+```
 
 ### Search options for all payers
 

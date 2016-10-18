@@ -1,6 +1,6 @@
 module Eligible
   class Payer < APIResource
-    def self.list(params, api_key = nil)
+    def self.list(params = {}, api_key = nil)
       send_request(:get, api_url('payers'), api_key, params)
     end
 

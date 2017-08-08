@@ -4,9 +4,6 @@ engines:
     config:
       languages:
       - ruby
-      - javascript
-      - python
-      - php
 
   fixme:
     enabled: true
@@ -16,12 +13,9 @@ engines:
 
 ratings:
   paths:
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
+  - Gemfile.lock
+  - Rakefile
+  - "**.rake"
   - "**.rb"
 
 exclude_paths:

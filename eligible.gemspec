@@ -19,8 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency('rest-client', '~> 2.0.0')
   gem.add_dependency('multi_json', '~> 1.7')
 
-  gem.add_development_dependency('rake', '~> 10.5')
+  gem.add_development_dependency('rake', '~> 12.0')
   gem.add_development_dependency('rspec', '~> 3.4')
-  gem.add_development_dependency('rubocop', '= 0.35.0')
   gem.add_development_dependency('simplecov', '~> 0.11')
 end

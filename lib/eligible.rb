@@ -48,6 +48,8 @@ module Eligible
   @@fingerprints = %w(79d62e8a9d59ae687372f8e71345c76d92527fac
                       4b2c6888ede79d0ee47339dc6fab5a6d0dc3cb0e
                       de4cdd0aae26df71290f0373af18e9ee7ecff18c)
+  @@open_timeout = 30
+  @@timeout = 80
 
   def self.api_url(url = '')
     @@api_base + url.to_s
@@ -92,6 +94,22 @@ module Eligible
   def self.add_fingerprint(digest)
     $stderr.puts 'The embedded certificate fingerprint was modified. This should only be done if instructed to by eligible support staff'
     @@fingerprints << digest
+  end
+
+  def self.open_timeout
+    @@open_timeout
+  end
+
+  def self.open_timeout=(open_timeout)
+    @@open_timeout = open_timeout.to_i
+  end
+
+  def self.timeout
+    @@timeout
+  end
+
+  def self.timeout=(timeout)
+    @@timeout = timeout.to_i
   end
 
   def self.direct_response?(params)
@@ -162,9 +180,9 @@ module Eligible
       method: method,
       url: url,
       headers: headers,
-      open_timeout: 30,
+      open_timeout: open_timeout,
       payload: payload,
-      timeout: 80,
+      timeout: timeout,
       ssl_verify_callback: verify_certificate,
       ssl_verify_callback_warnings: false
     }
@@ -192,7 +210,7 @@ module Eligible
         handle_restclient_error(e)
       end
 
-    rescue RestClient::Exception, Errno::ECONNREFUSED => e
+    rescue RestClient::Exception, RestClient::RequestTimeout, Errno::ECONNREFUSED => e
       handle_restclient_error(e)
     end
 

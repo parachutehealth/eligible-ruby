@@ -55,7 +55,7 @@ module Eligible
     end
 
     def self.url_encode(key)
-      URI.escape(key.to_s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+      CGI.escape(key.to_s)
     end
 
     def self.flatten_params(params, parent_key = nil)
